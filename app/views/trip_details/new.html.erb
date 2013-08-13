@@ -1,0 +1,26 @@
+<h1>New Trip Detail</h1>
+
+
+<%= form_tag(trip_details_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :city_or_region %><br />
+    <%= text_field_tag :city_or_region %>
+  </div>
+
+  <div>
+    <%= label_tag :recommendation_needs %><br />
+    <%= text_field_tag :recommendation_needs %>
+  </div>
+
+  <div>
+    <%= label_tag :trip_id %><br />
+    <%= number_field_tag :trip_id %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Create Trip Detail" %>
+  </div>
+<% end %>

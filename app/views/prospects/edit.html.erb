@@ -1,0 +1,21 @@
+<h1>Editing Prospect #<%= @prospect.id %></h1>
+
+
+<%= form_tag(prospect_url(@prospect), method: 'patch') do %>
+
+  <div>
+    <%= label_tag :name %><br />
+    <%= text_field_tag :name, @prospect.name %>
+  </div>
+
+  <div>
+    <%= label_tag :email %><br />
+    <%= text_field_tag :email, @prospect.email %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Prospect" %>
+  </div>
+
+<% end %>

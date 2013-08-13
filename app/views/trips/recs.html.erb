@@ -1,0 +1,74 @@
+<div class = "recsheader">
+  <h1 class="text-center">Give <%=@tripowner.first_name%> trip recommendations!</h1>
+
+    <!-- SIGNUP FORM BELOW -->
+    <% if current_user.blank? %>
+      <h3>Please sign up to provide recommendations.</h3>
+        <%= form_tag(usersback_url, method: 'post') do %>
+        <div>
+          <%= label_tag :first_name %>
+          <%= text_field_tag :first_name %>
+          <%= label_tag :last_name %>
+          <%= text_field_tag :last_name %>
+        </div>
+        <div>
+          <%= label_tag :email %>
+          <%= text_field_tag :email %>
+        </div>
+        <div>
+          <%= label_tag :password %>
+          <%= password_field_tag :password %>
+        </div>
+        <div>
+          <%= label_tag :password_confirmation %>
+          <%= password_field_tag :password_confirmation %>
+        </div>
+        <div>
+          <%= submit_tag "SIGN UP", :class => 'btn btn-success' %>
+        </div>
+    <% end %>
+    <%end%>
+             <!-- SIGNUP FORM ABOVE -->
+
+    <legend><h2 class = "text-center"><%= @trip.trip_name %></h2></legend>
+</div>
+                <!-- HEADER ABOVE -->
+<div class = "recs">
+        <!-- LIST OF RECOMMENDATIONS IS BELOW -->
+    <% @trip_details.each do |d| %>
+
+      <h3><%=d.city_or_region %></h3>
+      <h3>Recs Needed: <%=d.recommendation_needs %></h3>
+
+      <% recs = Comment.where(:trip_detail_id=>d.id)%>
+      <% recs.each do |r| %>
+        <% name = User.find_by(:id => r.user_id)%>
+        <p class = "triangle-right">
+          <b><%=name.first_name.capitalize %> <%=name.last_name.capitalize %></b>:    <%=r.recommendation %></br></br>
+
+        <%= link_to '<i class="icon-edit"></i>'.html_safe, edit_comment_url(r),class:"btn btn-warning" if current_user.present? && r.user_id == current_user.id %>
+
+        <%= link_to '<i class="icon-trash"></i>'.html_safe, comment_url(r), class:"btn btn-danger", method: 'delete', data: { confirm: "Do you really want to delete this rec?" } if current_user.present? && r.user_id == current_user.id %>
+
+        </p>
+      <%end%>
+        <!-- LIST OF RECOMMENDATIONS IS ABOVE -->
+        <!-- FORM FOR RECS BELOW -->
+      <div>
+        <%= form_tag("http://localhost:3000/comments", method: 'post') do %>
+
+          <h4><%= "Give your recommendations:" if current_user.present? %></h4>
+          <%= text_area_tag :recommendation, nil, class: "rectextarea" if current_user.present? %>
+          <%= hidden_field_tag :trip_detail_id, d.id %>
+          <%= hidden_field_tag :user_id, current_user.id if current_user.present?%>
+
+        <div>
+          <%= submit_tag "Submit Recs!", class: "btn btn-large btn-success" if current_user.present? %>
+        </div>
+
+       <% end %>
+      </div>
+       <!-- FORM FOR RECS ABOVE -->
+<%end%>
+</div>
+

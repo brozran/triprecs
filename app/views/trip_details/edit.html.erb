@@ -1,0 +1,26 @@
+<h1>Editing Trip Detail #<%= @trip_detail.id %></h1>
+
+
+<%= form_tag(trip_detail_url(@trip_detail), method: 'patch') do %>
+
+  <div>
+    <%= label_tag :city_or_region %><br />
+    <%= text_field_tag :city_or_region, @trip_detail.city_or_region %>
+  </div>
+
+  <div>
+    <%= label_tag :recommendation_needs %><br />
+    <%= text_field_tag :recommendation_needs, @trip_detail.recommendation_needs %>
+  </div>
+
+  <div>
+    <%= label_tag :trip_id %><br />
+    <%= number_field_tag :trip_id, @trip_detail.trip_id %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Trip Detail" %>
+  </div>
+
+<% end %>

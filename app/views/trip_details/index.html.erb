@@ -1,0 +1,32 @@
+<h1>Trip details</h1>
+
+<p><%= link_to 'Add a New Trip Detail', new_trip_detail_url %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>City or region</th>
+      <th>Recommendation needs</th>
+      <th>Trip</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @trip_details.each do |trip_detail| %>
+    <tr>
+      <td><%= trip_detail.city_or_region %></td>
+      <td><%= trip_detail.recommendation_needs %></td>
+      <td><%= trip_detail.trip_id %></td>
+  
+      <td><%= link_to 'Show', trip_detail_url(trip_detail) %></td>
+      <td><%= link_to 'Edit', edit_trip_detail_url(trip_detail) %></td>
+      <td><%= link_to 'Destroy', trip_detail_url(trip_detail), method: 'delete', data: { confirm: "Do you really want to delete this trip_detail?" } %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

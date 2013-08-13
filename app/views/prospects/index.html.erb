@@ -1,0 +1,30 @@
+<h1>Prospects</h1>
+
+<p><%= link_to 'Add a New Prospect', new_prospect_url %></p>
+
+<table>
+  <thead>
+    <tr>
+      <th>Name</th>
+      <th>Email</th>
+      <th></th>
+      <th></th>
+      <th></th>
+    </tr>
+  </thead>
+
+  <tbody>
+  <% @prospects.each do |prospect| %>
+    <tr>
+      <td><%= prospect.name %></td>
+      <td><%= prospect.email %></td>
+  
+      <td><%= link_to 'Show', prospect_url(prospect) %></td>
+      <td><%= link_to 'Edit', edit_prospect_url(prospect) %></td>
+      <td><%= link_to 'Destroy', prospect_url(prospect), method: 'delete', data: { confirm: "Do you really want to delete this prospect?" } %></td>
+
+    </tr>
+  <% end %>
+  </tbody>
+</table>
+

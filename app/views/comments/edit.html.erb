@@ -1,0 +1,26 @@
+<h1>Editing Comment #<%= @comment.id %></h1>
+
+
+<%= form_tag(comment_url(@comment), method: 'patch') do %>
+
+  <div>
+    <%= label_tag :recommendation %><br />
+    <%= text_field_tag :recommendation, @comment.recommendation %>
+  </div>
+
+  <div>
+    <%= label_tag :trip_detail_id %><br />
+    <%= number_field_tag :trip_detail_id, @comment.trip_detail_id %>
+  </div>
+
+  <div>
+    <%= label_tag :user_id %><br />
+    <%= number_field_tag :user_id, @comment.user_id %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Comment" %>
+  </div>
+
+<% end %>

@@ -1,0 +1,26 @@
+<h1>New Comment</h1>
+
+
+<%= form_tag(comments_url, method: 'post') do %>
+
+
+  <div>
+    <%= label_tag :recommendation %><br />
+    <%= text_field_tag :recommendation %>
+  </div>
+
+  <div>
+    <%= label_tag :trip_detail_id %><br />
+    <%= number_field_tag :trip_detail_id %>
+  </div>
+
+  <div>
+    <%= label_tag :user_id %><br />
+    <%= number_field_tag :user_id %>
+  </div>
+
+
+  <div>
+    <%= submit_tag "Create Comment" %>
+  </div>
+<% end %>
