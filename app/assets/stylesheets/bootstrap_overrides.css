@@ -20,7 +20,8 @@ margin-bottom: 20px;}
 .recs{margin-left: 105px; margin-right:105px; font-size:17px;}
 
 .feedbackground{
-   background-color:lightblue;
+  /*TODO: TRY TO CHANGE THIS BACK TO LIGHT BLUE*/
+   background-color:blue;
   border-radius: 100%;}
 
 .feed{margin-left: 200px;
@@ -42,7 +43,7 @@ margin-bottom: 20px;}
 
 .pagetitle{margin-left:40px;}
 
-.trip{border-bottom: thin dotted grey;
+.trip{border-bottom: thin dotted gray;
       padding-bottom: 20px;
       padding-top:10px;
       margin-left:50px;
@@ -137,5 +138,3 @@ input[type="text"].stdform{
 
 .signinsignup{background-image: url("/assets/sf.png");
      background-size: 100%;}
-
-*/
