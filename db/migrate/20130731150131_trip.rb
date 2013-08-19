@@ -1,4 +1,4 @@
-class Trip < ActiveRecord::Migration
+class CreateTrip < ActiveRecord::Migration
   def change
   end
 end
