@@ -1,18 +1,41 @@
 class TripsController < ApplicationController
 
-before_action :user_must_be_present, :only => [:new, :mytrips]
+before_action :user_must_be_present, :only => [:new, :mytrips, :index]
   def user_must_be_present
     if current_user.blank?
-      redirect_to trips_url, :notice =>"You must be signed in."
+      redirect_to new_user_url, :notice =>"You must be signed in."
   end
   end
 
 
   def homepage
+    render :layout => 'bgimage.html.erb'
   end
 
   def index
-    @trips = Trip.all
+
+    @confirmedfriends = Friend.where(:confirmed => true)
+    friendsapproved = @confirmedfriends.where(:f2 => current_user.id)
+    friendsrequestedapproved = @confirmedfriends.where(:f1 => current_user.id)
+
+    @friends = []
+
+    @confirmedfriends.each do |f|
+
+      friendsapproved.each do |a|
+        @friends << a.f1
+      end
+      friendsrequestedapproved.each do |r|
+        @friends << r.f2
+      end
+
+    end
+
+
+    # @trips = Trip.where(userid: [@friends, current_user.id])
+    @trips = Trip.where(:userid => @friends)
+
+
     @trip_details = TripDetail.all
     @trip_owner = User.all
   end
@@ -54,7 +77,6 @@ before_action :user_must_be_present, :only => [:new, :mytrips]
   end
 
   def recs
-
       @trip = Trip.find_by_id(params[:id])
       @tripowner=User.find_by_id(@trip.userid)
       @trip_details = TripDetail.where(:trip_id => Trip.find_by_id(params[:id]))
@@ -71,6 +93,8 @@ before_action :user_must_be_present, :only => [:new, :mytrips]
     @trip.destroy
     redirect_to trips_url
   end
+
+
 
 end
 

@@ -1,4 +1,22 @@
 Trips::Application.routes.draw do
+  # Routes for the Friend resource:
+  # CREATE
+  get '/friends/new', controller: 'friends', action: 'new', as: 'new_friend'
+  post '/friends', controller: 'friends', action: 'create'
+  get 'friendconfirm', controller: 'friends', action: 'friendconfirm'
+
+  # READ
+  get '/friends', controller: 'friends', action: 'index'
+  get '/friends/:id', controller: 'friends', action: 'show', as: 'friend'
+
+  # UPDATE
+  get '/friends/:id/edit', controller: 'friends', action: 'edit', as: 'edit_friend'
+  patch '/friends/:id', controller: 'friends', action: 'update'
+
+  # DELETE
+  delete '/friends/:id', controller: 'friends', action: 'destroy'
+  #------------------------------
+
   # Routes for the Prospect resource:
   # CREATE
   get '/prospects/new', controller: 'prospects', action: 'new', as: 'new_prospect'
@@ -19,7 +37,7 @@ Trips::Application.routes.draw do
   # Routes for the Comment resource:
   # CREATE
   get '/comments/new', controller: 'comments', action: 'new', as: 'new_comment'
-  post '/comments', controller: 'comments', action: 'create'
+  post '/comments', controller: 'comments', action: 'create', as: 'commentpost'
 
   # READ
   get '/comments', controller: 'comments', action: 'index'
@@ -33,7 +51,7 @@ Trips::Application.routes.draw do
   delete '/comments/:id', controller: 'comments', action: 'destroy'
   #------------------------------
 
-  root "trips#index"
+  root "trips#homepage"
 
   # Routes for sign-in/out
   get '/login' => 'session#new', :as => 'login'
@@ -43,12 +61,13 @@ Trips::Application.routes.draw do
 
   # Routes for the User resource:
   # CREATE
+
   get '/users/new', controller: 'users', action: 'new', as: 'new_user'
   post '/users', controller: 'users', action: 'create'
   post '/usersback', controller: 'users', action: 'createback', as: 'usersback'
 
   # READ
-  get '/users', controller: 'users', action: 'index'
+  get '/users', controller: 'users', action: 'index', as: 'users_url'
   get '/users/:id', controller: 'users', action: 'show', as: 'user'
 
   # UPDATE
@@ -79,8 +98,13 @@ Trips::Application.routes.draw do
 
   # Routes for the Trip resource:
   # CREATE
+
+# TEST
+  get '/friendtest', controller: 'trips', action: 'friendtest', as: 'friendtest'
+# TEST
+
   get '/trips/new', controller: 'trips', action: 'new', as: 'new_trip'
-  post '/trips', controller: 'trips', action: 'create'
+  post '/trips', controller: 'trips', action: 'create', as: 'trips_url'
 
   # READ
   get '/trips', controller: 'trips', action: 'index'

@@ -1,26 +1,15 @@
-<h1>Editing Comment #<%= @comment.id %></h1>
-
-
 <%= form_tag(comment_url(@comment), method: 'patch') do %>
-
+<h4><%= "Update your recommendation:" if current_user.present? %></h4>
   <div>
-    <%= label_tag :recommendation %><br />
-    <%= text_field_tag :recommendation, @comment.recommendation %>
+
+    <%= text_area_tag :recommendation, nil, class: "rectextarea" if current_user.present? %>
+    <%= hidden_field_tag :trip_detail_id, @comment.trip_detail_id %>
+    <%= hidden_field_tag :user_id, @comment.user_id %>
   </div>
 
-  <div>
-    <%= label_tag :trip_detail_id %><br />
-    <%= number_field_tag :trip_detail_id, @comment.trip_detail_id %>
-  </div>
 
   <div>
-    <%= label_tag :user_id %><br />
-    <%= number_field_tag :user_id, @comment.user_id %>
-  </div>
-
-  
-  <div>
-    <%= submit_tag "Update Comment" %>
+    <%= submit_tag 'Submit Recs!', class: "btn btn-large btn-success" if current_user.present? %>
   </div>
 
 <% end %>

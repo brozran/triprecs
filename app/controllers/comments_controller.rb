@@ -36,7 +36,7 @@ class CommentsController < ApplicationController
     @comment.user_id = params[:user_id]
 
     if @comment.save
-      redirect_to comments_url
+      redirect_to trips_url
     else
       render 'new'
     end

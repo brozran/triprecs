@@ -1,0 +1,26 @@
+<h1>Editing Friend #<%= @friend.id %></h1>
+
+
+<%= form_tag(friend_url(@friend), method: 'patch') do %>
+
+  <div>
+    <%= label_tag :f1 %><br />
+    <%= number_field_tag :f1, @friend.f1 %>
+  </div>
+
+  <div>
+    <%= label_tag :f2 %><br />
+    <%= number_field_tag :f2, @friend.f2 %>
+  </div>
+
+  <div>
+    <%= label_tag :confirmed %><br />
+    <%= check_box_tag :confirmed, @friend.confirmed? %>
+  </div>
+
+  
+  <div>
+    <%= submit_tag "Update Friend" %>
+  </div>
+
+<% end %>

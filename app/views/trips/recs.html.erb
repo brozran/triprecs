@@ -1,43 +1,53 @@
 <div class = "recsheader">
   <h1 class="text-center">Give <%=@tripowner.first_name%> trip recommendations!</h1>
 
+
     <!-- SIGNUP FORM BELOW -->
-    <% if current_user.blank? %>
-      <h3>Please sign up to provide recommendations.</h3>
-        <%= form_tag(usersback_url, method: 'post') do %>
+<% if current_user.blank? %>
+<%tripowner=User.find_by_id(@trip.userid).id%>
+
+      <h3 class="text-center">Please sign up to provide recommendations.</h3>
+        <%= form_tag usersback_url, class: "form-signin", method: 'post' do %>
+        <h2 class="form-signin-heading">SIGN UP</h2>
         <div>
-          <%= label_tag :first_name %>
-          <%= text_field_tag :first_name %>
-          <%= label_tag :last_name %>
-          <%= text_field_tag :last_name %>
+          <%= text_field_tag :first_name, nil, class: "input-block-level", placeholder: "First" %>
         </div>
         <div>
-          <%= label_tag :email %>
-          <%= text_field_tag :email %>
+          <%= text_field_tag :last_name, nil, class: "input-block-level", placeholder: "Last"  %>
         </div>
         <div>
-          <%= label_tag :password %>
-          <%= password_field_tag :password %>
+          <%= email_field_tag :email, nil, class: "input-block-level", placeholder: "Email address"  %>
         </div>
         <div>
-          <%= label_tag :password_confirmation %>
-          <%= password_field_tag :password_confirmation %>
+          <%= password_field_tag :password, nil, class: "input-block-level", placeholder: "Password"  %>
         </div>
         <div>
-          <%= submit_tag "SIGN UP", :class => 'btn btn-success' %>
+          <%= password_field_tag :password_confirmation, nil, class: "input-block-level", placeholder: "Confirm Password"  %>
         </div>
-    <% end %>
+          <%= hidden_field_tag :tripowner, tripowner.to_i %>
+        <div>
+          <%= submit_tag "SIGN UP", :class => 'btn btn-large btn-success' %>
+        </div>
+      <% end %>
+
     <%end%>
              <!-- SIGNUP FORM ABOVE -->
 
-    <legend><h2 class = "text-center"><%= @trip.trip_name %></h2></legend>
+    <legend><h2 class = "text-center"><%= @trip.trip_name %></h2>
+
+    <% if current_user.present? && @tripowner.id == current_user.id %>
+    <h4 class = "text-center fontbuzz">
+      **Copy the URL and send it to friends, family, and colleagues so they can fill in their recommendations**
+    </h4><%end%>
+<%#end%>
+  </legend>
 </div>
                 <!-- HEADER ABOVE -->
 <div class = "recs">
         <!-- LIST OF RECOMMENDATIONS IS BELOW -->
     <% @trip_details.each do |d| %>
 
-      <h3><%=d.city_or_region %></h3>
+      <h2><%=d.city_or_region %></h2>
       <h3>Recs Needed: <%=d.recommendation_needs %></h3>
 
       <% recs = Comment.where(:trip_detail_id=>d.id)%>
@@ -55,7 +65,7 @@
         <!-- LIST OF RECOMMENDATIONS IS ABOVE -->
         <!-- FORM FOR RECS BELOW -->
       <div>
-        <%= form_tag("http://localhost:3000/comments", method: 'post') do %>
+        <%= form_tag(commentpost_url, method: 'post') do %>
 
           <h4><%= "Give your recommendations:" if current_user.present? %></h4>
           <%= text_area_tag :recommendation, nil, class: "rectextarea" if current_user.present? %>
@@ -63,8 +73,10 @@
           <%= hidden_field_tag :user_id, current_user.id if current_user.present?%>
 
         <div>
-          <%= submit_tag "Submit Recs!", class: "btn btn-large btn-success" if current_user.present? %>
+          <%= submit_tag 'Submit Recs!', class: "btn btn-large btn-success" if current_user.present? %>
         </div>
+
+
 
        <% end %>
       </div>

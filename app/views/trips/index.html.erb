@@ -1,40 +1,62 @@
-    <div class="feed text-center">
+<div class="feed text-center">
 
-    <h1>Give Trip Recommendations</h1>
+  <% if current_user.blank? %>
 
-        <!-- START OF LOOP BELOW -->
+    <h3>Please sign in or sign up!</h3>
 
-    <% @trips.each do |trip| %>
+  <%end%>
 
-        <!-- INDIVIDUAL TRIP IS BELOW -->
-    <div class = "trip">
-        <h2><%= link_to trip.trip_name, trip_recs_url(trip) %></h2>
-        <h4><b><%= @trip_owner.find_by_id(trip.userid).first_name %>
-          <%= @trip_owner.find_by_id(trip.userid).last_name %></b></h4>
+      <h1>Give Trip Recommendations</h1>
 
-          <% trip.trip_details.each do |details| %>
+          <!-- START OF LOOP BELOW -->
+      <% if @trips.blank? %>
 
-             <div><b><%= details.city_or_region %>:</b>  <%= details.recommendation_needs %></div>
+        <div class = "feednotrips">
+          <h3>None of your friends have trips posted.</h3>
+        </div>
 
-           <%end%>
+      <%else%>
 
-          <%= link_to 'Update Details   |', trip_url(trip) if current_user.present? && trip.userid == current_user.id %>
+      <%@trips.each do |trip| %>
 
-          <%= link_to 'Edit Trip Name   |', edit_trip_url(trip) if current_user.present? && trip.userid == current_user.id %>
+          <!-- INDIVIDUAL TRIP IS BELOW -->
+      <div class = "trip">
+          <h2><%= link_to trip.trip_name, trip_recs_url(trip) %></h2>
+          <h4><b><%= @trip_owner.find_by_id(trip.userid).first_name %>
+            <%= @trip_owner.find_by_id(trip.userid).last_name %></b></h4>
 
-          <%= link_to 'Remove', trip_url(trip), method: 'delete', data: { confirm: "Do you really want to delete this trip?" } if current_user.present? && trip.userid == current_user.id %></br>
+            <% trip.trip_details.each do |details| %>
+
+               <div class="locationdetails text-error"><span class="location"><%= details.city_or_region %>:</span><span class="recdetails muted">  <%= details.recommendation_needs %></span></div>
+
+             <%end%>
+            <% if current_user.present? && trip.userid == current_user.id %>
+              <%= link_to "View Recommendations", trip_recs_url(trip), class:"btn btn-primary" %> </br>
+               </br>
+               </br>
+              <%else%>
+              <%= link_to "Give Recommendations!", trip_recs_url(trip), class:"btn btn-primary" %>
+
+
+            <%end%>
+
+
+            <%= link_to '<i class="icon-edit"></i> Details'.html_safe, trip_url(trip),class:"btn btn-info btn-small"  if current_user.present? && trip.userid == current_user.id %>
+
+            <%= link_to '<i class="icon-edit"></i> Name'.html_safe, edit_trip_url(trip), class:"btn btn-warning btn-small" if current_user.present? && trip.userid == current_user.id %>
+
+            <%= link_to '<i class="icon-trash"></i>'.html_safe, trip_url(trip), method: 'delete', data: { confirm: "Do you really want to delete this trip?" }, class:"btn btn-danger btn-small" if current_user.present? && trip.userid == current_user.id %></br>
 
             </br>
 
-          <%= link_to "Give Recommendations!", trip_recs_url(trip), class:"btn btn-primary" %>
-    </div>
+      </div>
 
-     <% end %>
+       <% end %>
 
 
-           <!-- INDIVIDUAL TRIP IS ABOVE -->
+             <!-- INDIVIDUAL TRIP IS ABOVE -->
 
-          <!-- END OF LOOP END OF FEED DIV -->
-
+            <!-- END OF LOOP END OF FEED DIV -->
+  <%end%>
 </div>
 

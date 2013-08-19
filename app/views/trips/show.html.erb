@@ -1,39 +1,43 @@
-<h1><%= @trip.trip_name %></h1>
-<legend>New Trip Details</legend>
-<!-- TRIP DETAILS FORM BELOW -->
+<div class = "feed text-center tripdetails">
+  <h1><%= @trip.trip_name %></h1>
+  <legend><h3>Add where you're going and the types of recs you need</h3></legend>
+  <!-- TRIP DETAILS FORM BELOW -->
 
-<%= form_tag(trip_details_url, method: 'post') do %>
+  <%= form_tag trip_details_url, method: 'post' do %>
 
-    <%= label_tag :city_or_region, "City or Region" %><br>
-    <%= text_field_tag :city_or_region, nil, class: "inputs", placeholder: "i.e. - London or Southern Thailand"  %>
+      <%= label_tag :city_or_region, "City, Region, or Part of Town" %>
+      <%= text_field_tag :city_or_region, nil, class: "stdform", placeholder: "i.e. - London or Southern Thailand"  %>
 
-    <%= label_tag :recommendation_needs %><br>
-    <%= text_field_tag :recommendation_needs, nil, class: "inputs", placeholder: "i.e. - food, lodging, things to do" %>
+      <%= label_tag :recommendation_needs, "Recommendation Needs" %>
+      <%= text_field_tag :recommendation_needs, nil, class: "stdform", placeholder: "i.e. - food, lodging, things to do" %>
 
-    <div>
-      <%= hidden_field_tag :trip_id, @trip.id %>
-    </div>
+      <div>
+        <%= hidden_field_tag :trip_id, @trip.id %>
+      </div>
 
-    <div>
-      <%= submit_tag "Add to Trip", class: "btn btn-large btn-success" %>
-    </div>
-<% end %>
-
-
-<legend>Trip Details</legend>
+      <div>
+        <%= submit_tag "Add to Trip", class: "btn btn-large btn-success" %>
+      </div>
+  <% end %>
 
 
-<% @trip_details.each do |t| %>
-  <ul>
-    <li>
-        <%= t.city_or_region %>: <%= t.recommendation_needs %>
-        <%= link_to 'Remove', trip_detail_url(t), method: 'delete' %>
-    </li>
-  </ul>
-<%end%>
+  <legend><h3>Trip Details</h3></legend>
 
-<%= link_to "POST TRIP", trips_url ,class: "btn btn-large btn-danger " %>
+  <div id = "marginbottombeforepost">
+    <% @trip_details.each do |t| %>
+      <ul class = "unstyled">
+        <li>
+            <span class = "location text-error"><%= t.city_or_region %>:    </span><span class = "recdetails muted"><%= t.recommendation_needs%></span>
 
+            <%= link_to '<i class="icon-trash"></i>'.html_safe, trip_detail_url(t), method: 'delete', class:"btn btn-danger btn-small pull-right margright" %>
+            <!-- WHY IS THE PULL RIGHT MARGIN RIGHT MOVING EVERYTHING LEFT? -->
+        </li>
+      </ul>
+    <%end%>
+  </div>
+    <%= link_to "POST TRIP", my_trips_url ,class: "btn btn-large btn-danger " %>
+
+</div>
 
 
 

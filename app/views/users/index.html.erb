@@ -1,34 +1,48 @@
-<h1>Users</h1>
 
-<p><%= link_to 'Add a New User', new_user_url %></p>
+  <div class = "search_results">
 
-<table>
-  <thead>
-    <tr>
-      <th>First</th>
-      <th>Last</th>
-      <th>Email</th>
-      <th>Password digest</th>
-      <th></th>
-      <th></th>
-      <th></th>
-    </tr>
-  </thead>
+     <% if @usersfiltered.blank? %>
+        <h3 class = "text-center">Sorry, no results found.<h3>
+        </br>
+      <%else%>
 
-  <tbody>
-  <% @users.each do |user| %>
-    <tr>
-      <td><%= user.first_name %></td>
-      <td><%= user.last_name %></td>
-      <td><%= user.email %></td>
-      <td><%= user.password_digest %></td>
+        <table class = "table table-hover">
+          <thead>
+              <h1 class = "text-center">Search Results</h1>
+            <tr>
+              <th>First</th>
+              <th>Last</th>
 
-      <td><%= link_to 'Show', user_url(user) %></td>
-      <td><%= link_to 'Edit', edit_user_url(user) %></td>
-      <td><%= link_to 'Destroy', user_url(user), method: 'delete', data: { confirm: "Do you really want to delete this user?" } %></td>
 
-    </tr>
-  <% end %>
-  </tbody>
-</table>
+              <th></th>
+              <th></th>
+              <th></th>
+            </tr>
+          </thead>
 
+          <tbody>
+
+          <% @usersfiltered.each do |user| %>
+
+            <tr>
+              <td><%= user.first_name.capitalize %></td>
+              <td><%= user.last_name.capitalize %></td>
+              <td>
+
+                <%= form_tag friends_url, method: 'post' do %>
+
+                   <%= hidden_field_tag :f1, current_user.id %>
+                   <%= hidden_field_tag :f2, user.id %>
+                   <%= hidden_field_tag :confirmed %>
+                   <%= button_tag '<i class="icon-plus"></i> Add as Friend'.html_safe, class:"btn btn-small btn-success pull-right" %>
+
+                 <%end%>
+              </td>
+
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+
+      </div>
+      <%end%>

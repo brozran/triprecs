@@ -1,0 +1,107 @@
+<div class = "search_results">
+
+      <h2 class = "text-center">Friend Activity</h2>
+      <div class = "friendpage">
+
+        <% if @almostfriends.blank?%>
+          <h3 class = "text-center">No pending confirmations or approvals</h3>
+        <%else%>
+
+        <table class = "table table-hover">
+          <thead>
+            <tr>
+              <th>Name</th>
+              <th>Status</th>
+            </tr>
+          </thead>
+
+          <tbody>
+          <% @almostfriends.each do |friend| %>
+            <tr>
+              <% if friend.f1 == current_user.id %>
+                <td><%= User.find_by_id(friend.f2).first_name %> <%= User.find_by_id(friend.f2).last_name %></td>
+              <%else%>
+                <td><%= User.find_by_id(friend.f1).first_name %> <%= User.find_by_id(friend.f1).last_name %></td>
+              <%end%>
+
+              <% if friend.confirmed == false && friend.f1 == current_user.id %>
+                <td><%= button_tag "PENDING", class: "btn btn-warning btn-small" %></td>
+              <%end%>
+
+              <% if friend.confirmed == false && friend.f2 == current_user.id %>
+                <td><%= form_tag friend_url(friend.id), method: 'patch' do %>
+                     <%= hidden_field_tag :f1, friend.f1 %>
+                     <%= hidden_field_tag :f2, friend.f2 %>
+                     <%= hidden_field_tag :confirmed, true %>
+                     <%= button_tag '<i class="icon-plus"></i> CONFIRM'.html_safe, class:"btn btn-small btn-success" %>
+                   <%end%></td>
+              <%end%>
+            </tr>
+          <% end %>
+          </tbody>
+        </table>
+        <%end%>
+      </div>
+
+      <% if @friendsa.blank? && @friendsr.blank? %>
+        <h3 class = "text-center">No friends :(</h3>
+      <%else%>
+
+<!-- FRIEND TABLE HEAD -->
+      <h2 class = "text-center">Friends</h2>
+      <div class = "friendpage">
+      <table class = "table table-hover friendpage">
+        <thead>
+          <tr>
+            <th>Name</th>
+          </tr>
+        </thead>
+
+        <tbody>
+<!-- BELOW IS FRIEND LIST -->
+
+        <% @friendsa.each do |friend| %>
+
+            <tr>
+                <td>
+                  <%=User.find_by_id(friend.f1).first_name.capitalize%> <%=User.find_by_id(friend.f1).last_name.capitalize%>
+                </td>
+
+                <td>
+                  <%= form_tag friend_url(friend), method: 'delete' do %>
+                    <%= submit_tag "Unfriend", data: { confirm: "Do you really want to unfriend this person?" }, class:"btn btn-small btn-danger" %>
+
+                  <%end%>
+                </td>
+             </tr>
+
+          <%end%>
+
+        <% @friendsr.each do |friend| %>
+
+            <tr>
+                <td>
+                  <%=User.find_by_id(friend.f2).first_name.capitalize%> <%=User.find_by_id(friend.f2).last_name.capitalize%>
+                </td>
+
+                <td>
+                  <%= form_tag friend_url(friend), method: 'delete' do %>
+                    <%= submit_tag "Unfriend", data: { confirm: "Do you really want to unfriend this person?" }, class:"btn btn-small btn-danger" %>
+
+                  <%end%>
+                </td>
+             </tr>
+
+          <%end%>
+
+<!-- ABOVE IS FRIEND LIST -->
+
+
+
+        </tbody>
+      </table>
+
+      <%end%>
+    </div>
+</div>
+

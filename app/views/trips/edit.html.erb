@@ -1,16 +1,12 @@
-<h1>Editing Trip #<%= @trip.id %></h1>
+<%= form_tag trip_url(@trip), class: "form-signin", method: 'patch' do %>
 
+    <h2>Trip Name</h2>
 
-<%= form_tag(trip_url(@trip), method: 'patch') do %>
+    <%= text_field_tag :trip_name, @trip.trip_name, class: "input-block-level" %>
 
-  <div>
-    <%= label_tag :trip_name %><br />
-    <%= text_field_tag :trip_name, @trip.trip_name %>
-  </div>
-
-
-  <div>
-    <%= submit_tag "Update Trip", class: "btn btn-success " %>
-  </div>
+    <%= hidden_field_tag :userid, current_user.id %>
+    <div>
+      <%= submit_tag "Update Trip", class:"btn btn-large btn-success" %>
+    </div>
 
 <% end %>

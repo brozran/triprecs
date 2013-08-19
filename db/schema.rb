@@ -11,13 +11,19 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130808233314) do
+ActiveRecord::Schema.define(version: 20130815011933) do
 
   create_table "comments", force: true do |t|
     t.string  "recommendation"
     t.integer "trip_detail_id"
     t.integer "user_id"
     t.integer "prospect_id"
+  end
+
+  create_table "friends", force: true do |t|
+    t.integer "f1"
+    t.integer "f2"
+    t.boolean "confirmed"
   end
 
   create_table "prospects", force: true do |t|

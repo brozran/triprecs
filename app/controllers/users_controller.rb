@@ -1,7 +1,46 @@
 class UsersController < ApplicationController
 
   def index
-    @users = User.all
+    # @users = User.all
+
+    # @usersfiltered = User.where("first_name LIKE?", "%#{params[:first_name]}%" )
+    @usersfiltered = User.where("first_name LIKE :search_name or last_name LIKE :search_name" ,
+                             search_name: "%#{params[:search_word]}%" )
+
+    @confirmedfriends = Friend.where(:confirmed => true)
+    friendsapproved = @confirmedfriends.where(:f2 => current_user.id)
+    friendsrequestedapproved = @confirmedfriends.where(:f1 => current_user.id)
+
+
+    approved_ids = []
+
+    approved_ids = friendsapproved.map { |fa| fa.f1 } if friendsapproved.present?
+
+    approved_ids += friendsrequestedapproved.map { |fra| fra.f2 } if friendsrequestedapproved.present?
+
+    approved_ids.uniq!  # (May not be needed)
+
+    @usersfiltered.delete_if { |user| approved_ids.include? user.id }
+      # @usersfiltered.each do |usersfiltered|
+
+      # if friendsapproved.present?
+      #   friendsapproved.each do |fa|
+      #     if usersfiltered.id == fa.f1
+      #         usersfiltered.destroy
+      #     end
+      #   end
+      # end
+
+      # if friendsrequestedapproved.present?
+      #   friendsrequestedapproved.each do |fra|
+      #     if usersfiltered.id == fra.f2
+      #         usersfiltered.destroy
+      #     end
+      #   end
+      # end
+
+      # end
+
   end
 
   def show
@@ -10,6 +49,8 @@ class UsersController < ApplicationController
 
   def new
     @user = User.new
+    render :layout => 'bgimage.html.erb'
+
   end
 
   def create
@@ -23,13 +64,14 @@ class UsersController < ApplicationController
     if @user.save
       reset_session
       session[:user_id] = @user.id
-      redirect_to root_url, notice: "Signed up successfully."
+      redirect_to trips_url, notice: "Signed up successfully."
     else
       render 'new'
     end
   end
 
   def createback
+
     @user = User.new
     @user.first_name = params[:first_name]
     @user.last_name = params[:last_name]
@@ -37,10 +79,20 @@ class UsersController < ApplicationController
     @user.password = params[:password]
     @user.password_confirmation = params[:password_confirmation]
 
+    @friendship = Friend.new
+    @friendship.f2 = params[:tripowner]
+
     if @user.save
-      reset_session
-      session[:user_id] = @user.id
-      redirect_to :back, notice: "Signed up successfully."
+    @friendship.f1 = @user.id
+    @friendship.confirmed = true
+    @friendship.save
+
+
+    reset_session
+    session[:user_id] = @user.id
+
+    redirect_to :back, notice: "Signed up successfully."
+
     else
       render 'new'
     end
