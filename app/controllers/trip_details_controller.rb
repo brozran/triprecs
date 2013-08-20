@@ -20,7 +20,7 @@ class TripDetailsController < ApplicationController
 
 
     if @trip_detail.save
-      redirect_to "http://localhost:3000/trips/#{@trip_detail.trip_id}"
+      redirect_to :back
 
       # trip_details_url
     else

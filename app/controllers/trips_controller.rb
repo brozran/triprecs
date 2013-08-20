@@ -91,7 +91,7 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
   def destroy
     @trip = Trip.find_by_id(params[:id])
     @trip.destroy
-    redirect_to trips_url
+    redirect_to my_trips_url
   end
 
 
