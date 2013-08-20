@@ -20,16 +20,16 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
 
     @friends = []
 
-    @confirmedfriends.each do |f|
+    @friends << current_user.id
 
-      friendsapproved.each do |a|
-        @friends << a.f1
-      end
-      friendsrequestedapproved.each do |r|
-        @friends << r.f2
-      end
-
+    friendsapproved.each do |a|
+      @friends << a.f1
     end
+    friendsrequestedapproved.each do |r|
+      @friends << r.f2
+    end
+
+    # end
 
 
     # @trips = Trip.where(userid: [@friends, current_user.id])
