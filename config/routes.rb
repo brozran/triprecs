@@ -56,6 +56,7 @@ Trips::Application.routes.draw do
   # Routes for sign-in/out
   get '/login' => 'session#new', :as => 'login'
   post '/sessions' => 'session#create', :as => 'sessions'
+  post '/sessionback' => 'session#sessionback', :as => 'sessionback'
   delete '/sessions' => 'session#destroy', :as => 'session'
 
 
