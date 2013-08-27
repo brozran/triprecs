@@ -92,6 +92,160 @@ a:hover,a:focus{color:#005580;text-decoration:underline;}
 .row-fluid .offset8{margin-left:70.2127659574468%;*margin-left:70.10638297872339%;}
 .row-fluid .offset8:first-child{margin-left:68.08510638297872%;*margin-left:67.9787234042553%;}
 .row-fluid .offset7{margin-left:61.70212765957446%;*margin-left:61.59574468085106%;}
+
+
+
+
+.benefits{ margin-left: 20px;
+margin-bottom: 20px;}
+
+.fontbuzz{font:red;}
+
+.search-field{margin-left: 300px; margin-bottom: 0px; padding-bottom: 0px; padding-top: 5px;}
+.welcomefont{color: white;
+              list-style: none;
+              padding-top: 6px;}
+
+.recsheader{margin-left: 75px; margin-right: 105px;}
+
+.recs{margin-left: 105px; margin-right:105px; font-size:17px;}
+
+.feedbackground{
+  border-radius: 100%;}
+
+
+.feed{margin-left: 200px;
+      margin-right: 200px;
+      padding-top: 10px;
+      border-radius: 5%;
+      background-color: white;
+      background-size: 100%;}
+
+.marginin{margin-left: 150px;
+            margin-right: 150px;}
+
+#marginbottombeforepost{margin-bottom: 40px;}
+
+
+.pagetitle{margin-left:40px;}
+
+.trip{border-bottom: thin dotted gray;
+      padding-bottom: 20px;
+      padding-top:10px;
+      margin-left:50px;
+      margin-right:50px;
+
+    }
+.margright{margin-right: 75px;}
+
+.form-signin {
+      width: 300px;
+      padding: 19px 29px 29px;
+      margin: 10px auto 20px;
+      background-color: #fff;
+      border: 1px solid #e5e5e5;
+        -webkit-border-radius: 5px;
+           -moz-border-radius: 5px;
+                border-radius: 5px;
+        -webkit-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+           -moz-box-shadow: 0 1px 2px rgba(0,0,0,.05);
+                box-shadow: 0 1px 2px rgba(0,0,0,.05);
+      }
+
+.form-signin .form-signin-heading,
+.form-signin .checkbox {
+        margin-bottom: 10px;
+        padding-top:10px;
+      }
+.form-signin input[type="email"],
+.form-signin input[type="text"],
+.form-signin input[type="password"] {
+        ;
+        font-size: 16px;
+        height: 50px;
+        margin-bottom: 15px;
+        padding: 7px 9px;
+      }
+.triangle-right {
+  position:relative;
+  padding:15px;
+  margin:1em 0 3em;
+  color:black;
+  background:white ; /* default background for browsers without gradient support */
+  /* css3 */
+
+  -webkit-border-radius:10px;
+  -moz-border-radius:10px;
+  border-radius:10px;
+}
+.triangle-right:after {
+  content:"";
+  position:absolute;
+  bottom:-20px; /* value = - border-top-width - border-bottom-width */
+  left:50px; /* controls horizontal position */
+  border-width:20px 0 0 20px; /* vary these values to change the angle of the vertex */
+  border-style:solid;
+  border-color:white transparent;
+    /* reduce the damage in FF3.0 */
+    display:block;
+    width:0;
+}
+
+.head{line-height: 25px;}
+
+input[type="text"].stdform{
+  width: 300px;
+  height: 30px;
+  }
+.locationdetails{margin-bottom: 10px;}
+.location{font-size: 20px;}
+.recdetails{font-size:16px;}
+
+.tripdetails{padding-bottom: 40px;}
+
+.feednotrips{padding-bottom: 100px;
+              padding-top:50px;
+              vertical-align: center;}
+
+.rectextarea{width:940px;
+  height:120px;
+  }
+
+.rec{margin-bottom: 100px;}
+.friendpage{padding-bottom: 50px;}
+.search_results{
+      margin-left: 200px;
+      margin-right: 200px;
+      background-color:white;
+      padding-top: 10px;
+      padding-left:40px;
+      padding-right:40px;
+      background: url(<%= asset_path 'ps_neutral.png' %>);
+}
+
+
+.signupformontrip{margin-left: 120px;}
+.signinformontrip{margin-right:120px;}
+
+/*GENERAL*/
+.mainbgcolor{background-color: cornsilk;}
+
+/*HOMEPAGE CSS*/
+
+#tagline{
+  margin-top: 20px;
+  margin-bottom: 20px;}
+
+.howto{
+  height:200px;
+}
+
+.howtoicon{
+  color:black;
+  font-style: bold;
+  font-size: 75px;
+}
+
 .row-fluid .offset7:first-child{margin-left:59.574468085106375%;*margin-left:59.46808510638297%;}
 .row-fluid .offset6{margin-left:53.191489361702125%;*margin-left:53.085106382978715%;}
 .row-fluid .offset6:first-child{margin-left:51.063829787234035%;*margin-left:50.95744680851063%;}
