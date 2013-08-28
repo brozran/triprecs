@@ -23,7 +23,7 @@ def sessionback
       count = 0
       friends = Friend.all
       friends.each do |f|
-        if (f.f1 == user.id && f.f2 == params[:tripowner]) || (f.f2 == user.id && f.f1 == params[:tripowner])
+        if (f.f1 = user.id && f.f2 = params[:tripowner]) || (f.f2 = user.id && f.f1 = params[:tripowner])
           count += 1
         else
           count += 0

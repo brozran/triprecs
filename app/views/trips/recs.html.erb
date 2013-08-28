@@ -4,51 +4,47 @@
     <!-- SIGNUP FORM BELOW -->
 <% if current_user.blank? %>
 
-<h3 class="text-center">Please sign up or sign in to provide recommendations.</h3>
-<div class = "pull-left" id ="signupformontrip">
-<%tripowner=User.find_by_id(@trip.userid).id%>
+    <h3 class="text-center">Please sign up or sign in to provide recommendations.</h3>
+    <div class = "row">
 
-      <%= form_tag usersback_url, class: "form-signin", id:"ontripuseraction", method: 'post' do %>
-        <h2 class="form-signin-heading">SIGN UP</h2>
-        <div>
-          <%= text_field_tag :first_name, nil, class: "input-block-level", placeholder: "First" %>
-        </div>
-        <div>
-          <%= text_field_tag :last_name, nil, class: "input-block-level", placeholder: "Last"  %>
-        </div>
-        <div>
-          <%= email_field_tag :email, nil, class: "input-block-level", placeholder: "Email address"  %>
-        </div>
-        <div>
-          <%= password_field_tag :password, nil, class: "input-block-level", placeholder: "Password"  %>
-        </div>
-        <div>
-          <%= password_field_tag :password_confirmation, nil, class: "input-block-level", placeholder: "Confirm Password"  %>
-        </div>
-          <%= hidden_field_tag :tripowner, tripowner.to_i %>
-        <div>
-          <%= submit_tag "SIGN UP", :class => 'btn btn-large btn-success' %>
-        </div>
-      <% end %>
-</div>
-
-<div class = "pull-right" id ="signinformontrip">
-  <%= form_tag sessionback_url, class: "form-signin", id:"ontripuseraction", method: 'post' do %>
-
-  <h2 class="form-signin-heading">SIGN IN</h2>
-    <%=email_field_tag :email, params[:email], class: "input-block-level", placeholder: "Email address" %>
-    <%=password_field_tag :password, nil, class: "input-block-level", placeholder: "Password" %>
-
-    <%= hidden_field_tag :tripowner, tripowner.to_i %>
-
-    <div>
-     <%= submit_tag "SIGN IN", :class => 'btn btn-large btn-success' %>
+        <%tripowner=User.find_by_id(@trip.userid).id%>
+            <div class = "pull-left">
+              <%= form_tag usersback_url, class: "form-recsignin", id:"onrecssignup", method: 'post' do %>
+                <h2 class="form-recsignin-heading">SIGN UP</h2>
+                <div>
+                  <%= text_field_tag :first_name, nil, class: "input-block-level", placeholder: "First" %>
+                </div>
+                <div>
+                  <%= text_field_tag :last_name, nil, class: "input-block-level", placeholder: "Last"  %>
+                </div>
+                <div>
+                  <%= email_field_tag :email, nil, class: "input-block-level", placeholder: "Email address"  %>
+                </div>
+                <div>
+                  <%= password_field_tag :password, nil, class: "input-block-level", placeholder: "Password"  %>
+                </div>
+                <div>
+                  <%= password_field_tag :password_confirmation, nil, class: "input-block-level", placeholder: "Confirm Password"  %>
+                </div>
+                  <%= hidden_field_tag :tripowner, tripowner.to_i %>
+                <div>
+                  <%= submit_tag "SIGN UP", :class => 'btn btn-large btn-success' %>
+                </div>
+              <% end %>
+            </div>
+        <%= form_tag sessionback_url, class: "form-recsignin pull-right", id:"onrecssignin", method: 'post' do %>
+          <h2 class="form-recsignin-heading">SIGN IN</h2>
+            <%=email_field_tag :email, params[:email], class: "input-block-level", placeholder: "Email address" %>
+            <%=password_field_tag :password, nil, class: "input-block-level", placeholder: "Password" %>
+            <%= hidden_field_tag :tripowner, tripowner.to_i %>
+            <div>
+             <%= submit_tag "SIGN IN", :class => 'btn btn-large btn-success' %>
+            </div>
+        <%end%>
     </div>
 
 <%end%>
 
-</div>
-<%end%>
              <!-- SIGNUP FORM ABOVE -->
 
     <legend><h2 class = "text-center"><%= @trip.trip_name %></h2>
@@ -65,7 +61,7 @@
         <!-- LIST OF RECOMMENDATIONS IS BELOW -->
     <% @trip_details.each do |d| %>
 
-      <h2><%=d.city_or_region %></h2>
+      <h2 class ="text-center"><%=d.city_or_region %></h2>
       <h3>Recs Needed: <%=d.recommendation_needs %></h3>
 
       <% recs = Comment.where(:trip_detail_id=>d.id)%>
@@ -91,7 +87,11 @@
           <%= hidden_field_tag :user_id, current_user.id if current_user.present?%>
 
         <div>
-          <%= submit_tag 'Submit Recs!', class: "btn btn-large btn-success" if current_user.present? %>
+          <% if current_user.present? && @trip.userid == current_user.id %>
+            <%= submit_tag 'Add Comment', class: "btn btn-large btn-success" if current_user.present? %>
+          <%else%>
+            <%= submit_tag 'Submit Recs!', class: "btn btn-large btn-success" if current_user.present? %>
+          <%end%>
         </div>
 
 

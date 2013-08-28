@@ -1,19 +1,46 @@
+<div class ="container">
+  <h1 class = "text-center" id = "tagline">Welcome to TrekRecs!</h1>
+  <h3 class = "text-center">
+    The easiest way to collect and organize trip recommendations from your family and friends.
+  </h3>
 
-<div class="hero-unit marginin">
-  <h1>Welcome to TrekRecs!</h1>
-  <div class = "tagline">A simple, easy way to collect and organize trip recommendations from your family, friends, and colleagues.  No more email. No more stressing trying to remember recommendations from conversation.</div>
-    <div class = "benefits">1.  Post your trip</div>
-    <div class = "benefits">2.  Let your network know you need recommendations</div>
-    <div class = "benefits">3.  Sit back, relax, and watch the recommendations come</div>
+<div class = "row-fluid autocenter">
 
+    <div class = "howto span4 text-center">
+      <h4>1. Post the details of your trip and the types of recommendations you need</h4>
+          <i class="icon-map-marker howtoicon"></i>
+          <i class="icon-plane howtoicon"></i>
+          <i class="icon-suitcase howtoicon"></i>
+    </div>
 
-    <%= link_to "SIGN UP", new_user_url, class:"btn btn-success btn-large" %>
+    <div class = "howto span4 text-center">
+      <h4>2. Tell your network you need recommendations</h4>
+            <i class="icon-linkedin-sign howtoicon"></i>
+            <i class="icon-twitter-sign howtoicon"></i>
+            <i class="icon-facebook-sign howtoicon"></i>
+     </div>
 
-  </br>
-</br>
-</br>
-  <h4>Already a member?</h4>
-  <%= link_to "SIGN IN", login_url, class:"btn btn-primary" %>
+     <div class = "howto span4 text-center">
+      <h4>3. Sit back, relax, and watch the recommendations come</h4>
+            <i class="icon-comments-alt howtoicon"></i>
+     </div>
+</div>
+</div>
+<div class = "row-fluid">
 
+     <div class = "howto span3 offset3 text-center">
+      <h4>4. View all your recommendations in ONE spot</h4>
+            <i class="icon-glass howtoicon"></i>
+            <i class="icon-food howtoicon"></i>
+     </div>
+
+     <div class = "howto span3 text-center">
+      <h4>5. Receive an organized email with all your recommendations the day before your trip</h4>
+            <i class="icon-envelope-alt howtoicon"></i>
+     </div>
 </div>
 
+<div class = "offset5">
+  <%= link_to "SIGN UP", new_user_url, class:"btn btn-success btn-large" %>
+  <%= link_to "SIGN IN", login_url, class:"btn btn-primary btn-large" %>
+</div>
