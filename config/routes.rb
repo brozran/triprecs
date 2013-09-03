@@ -51,7 +51,7 @@ Trips::Application.routes.draw do
   delete '/comments/:id', controller: 'comments', action: 'destroy'
   #------------------------------
 
-  root "trips#homepage"
+  root "trips#index"
 
   # Routes for sign-in/out
   get '/login' => 'session#new', :as => 'login'

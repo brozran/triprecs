@@ -3,7 +3,7 @@ class TripsController < ApplicationController
 before_action :user_must_be_present, :only => [:new, :mytrips, :index]
   def user_must_be_present
     if current_user.blank?
-      redirect_to new_user_url, :notice =>"You must be signed in."
+      redirect_to home_url
   end
   end
 
@@ -33,7 +33,7 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
 
 
     # @trips = Trip.where(userid: [@friends, current_user.id])
-    @trips = Trip.where(:userid => @friends)
+    @trips = Trip.where(:userid => @friends).order("departuredate")
 
 
     @trip_details = TripDetail.all
@@ -52,6 +52,7 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
   def create
     @trip = Trip.new
     @trip.trip_name = params[:trip_name]
+    @trip.departuredate = params[:departuredate]
     @trip.userid = params[:userid]
 
     if @trip.save
@@ -84,7 +85,7 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
   end
 
   def mytrips
-      @mytrips = Trip.where(:userid => current_user.id)
+      @mytrips = Trip.where(:userid => current_user.id).order("departuredate")
       @trip_details = TripDetail.all
   end
 

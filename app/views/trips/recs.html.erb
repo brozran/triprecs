@@ -48,6 +48,7 @@
              <!-- SIGNUP FORM ABOVE -->
 
     <legend><h2 class = "text-center"><%= @trip.trip_name %></h2>
+    <h4 class = "text-center">Departing: <%= @trip.departuredate.strftime("%B %d, %Y") %></h4>
 
     <% if current_user.present? && @tripowner.id == current_user.id %>
     <h4 class = "text-center fontbuzz">

@@ -22,6 +22,7 @@
           <!-- INDIVIDUAL TRIP IS BELOW -->
       <div class = "trip">
           <h2><%= link_to trip.trip_name, trip_recs_url(trip) %></h2>
+          <h5>Departing: <%= trip.departuredate.strftime("%B %d, %Y") %></h5>
           <h4><b><%= @trip_owner.find_by_id(trip.userid).first_name %>
             <%= @trip_owner.find_by_id(trip.userid).last_name %></b></h4>
 

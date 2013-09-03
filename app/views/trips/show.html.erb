@@ -1,5 +1,6 @@
 <div class = "feed text-center tripdetails">
   <h1><%= @trip.trip_name %></h1>
+  <h3>Departure: <%= @trip.departuredate.strftime("%B %d, %Y") %></h3>
   <legend><h3>Add where you're going and the types of recs you need</h3></legend>
   <!-- TRIP DETAILS FORM BELOW -->
 

@@ -4,6 +4,7 @@ class UsersController < ApplicationController
     # @users = User.all
 
     # @usersfiltered = User.where("first_name LIKE?", "%#{params[:first_name]}%" )
+
     @usersfiltered = User.where("first_name LIKE :search_name or last_name LIKE :search_name" ,
                              search_name: "%#{params[:search_word]}%" )
 

@@ -1,10 +1,14 @@
 <%= form_tag trips_url, class: "form-signin", method: 'post' do %>
 
-    <h2>Trip Name</h2>
+    <h2>Trip Name & Departure Date</h2>
 
     <%= text_field_tag :trip_name, nil, class: "input-block-level", placeholder: "i.e. - Summer Europe Trip" %>
 
     <%= hidden_field_tag :userid, current_user.id %>
+
+    <%= date_field_tag :departuredate, nil, class: "input-block-level" %>
+
+
     <div>
       <%= submit_tag "Create Trip", class:"btn btn-large btn-success" %>
     </div>
