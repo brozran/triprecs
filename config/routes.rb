@@ -1,4 +1,8 @@
 Trips::Application.routes.draw do
+  # alternate homepage
+
+  get '/testhome' => 'trips#testhome', :as => 'testhome'
+
   # Routes for the Friend resource:
   # CREATE
   get '/friends/new', controller: 'friends', action: 'new', as: 'new_friend'

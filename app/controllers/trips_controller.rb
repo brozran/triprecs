@@ -95,6 +95,9 @@ before_action :user_must_be_present, :only => [:new, :mytrips, :index]
     redirect_to my_trips_url
   end
 
+  def testhome
+    render :layout => 'testhome.html.erb'
+  end
 
 
 end
