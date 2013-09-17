@@ -948,7 +948,7 @@ input[type="text"].stdform{
   text-align: center;
 }
 
-a, a:hover, a:active, a:visited { color: white; }
+.learnmore a{color:white;}
 
 .homebottomportion{padding-bottom: 65px;}
 
