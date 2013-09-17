@@ -11,10 +11,10 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20130903151140) do
+ActiveRecord::Schema.define(version: 20130917202031) do
 
   create_table "comments", force: true do |t|
-    t.string  "recommendation"
+    t.text    "recommendation", limit: 255
     t.integer "trip_detail_id"
     t.integer "user_id"
     t.integer "prospect_id"
