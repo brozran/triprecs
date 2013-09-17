@@ -928,8 +928,27 @@ input[type="text"].stdform{
 
 .slidecontent{position:absolute;
               bottom:20%;
-              color:lightyellow;
+              color:white;
               margin-left: 10%;}
 
-.homebottomportion{padding-bottom: 35px;}
+.learnmore{color:white;
+           position:absolute;
+           bottom:7%;
+           left:50%; }
+
+.modalbutton{width: 200px;
+             display: block;
+             margin-left: auto;
+             margin-right: auto;
+}
+
+.center {
+  margin-left: auto;
+  margin-right: auto;
+  text-align: center;
+}
+
+a, a:hover, a:active, a:visited { color: white; }
+
+.homebottomportion{padding-bottom: 65px;}
 

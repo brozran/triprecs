@@ -52,7 +52,7 @@ def sessionback
 
   def destroy
     reset_session
-    redirect_to login_url, :notice => "Signed out successfully."
+    redirect_to home_url, :notice => "Signed out successfully."
   end
 
 

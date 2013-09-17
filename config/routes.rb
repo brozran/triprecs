@@ -1,7 +1,7 @@
 Trips::Application.routes.draw do
   # alternate homepage
 
-  get '/testhome' => 'trips#testhome', :as => 'testhome'
+  get '/home' => 'trips#home', :as => 'home'
 
   # Routes for the Friend resource:
   # CREATE
@@ -126,11 +126,6 @@ Trips::Application.routes.draw do
   # DELETE
   delete '/trips/:id', controller: 'trips', action: 'destroy'
   #------------------------------
-
-  #HOME PAGE
-
-  get 'home', controller: 'trips', action: 'homepage'
-
 
 
   # The priority is based upon order of creation: first created -> highest priority.

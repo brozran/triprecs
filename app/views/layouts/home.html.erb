@@ -2,7 +2,7 @@
 
 <html>
 <head>
-  <title>TrekRecs</title>
+  <title>TrekRecs | Trip Recommendations Made Easy</title>
   <link rel="shortcut icon" href="assets/favicon.ico" type="image/x-icon">
   <link rel="icon" href="assets/favicon.ico" type="image/x-icon">
 
@@ -13,7 +13,7 @@
 <script type="text/javascript">
 $(document).ready(function () {
     $('.carousel').carousel({
-        interval: 5000
+        interval: 3000
     });
 
     $('.carousel').carousel('cycle');
@@ -23,40 +23,31 @@ $(document).ready(function () {
 
 </head>
 
-
 <body class = "mainbgcolor">
+
 <div class="navbar navbar-fixed-top navbar-inverse">
     <div class="navbar-inner">
       <div class="container">
         <a class="btn btn-navbar" data-toggle="collapse" data-target=".nav-collapse">
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
-          <span class="icon-bar"></span>
         </a>
         <%= link_to "TrekRecs", trips_url, :class => "brand" %>
-        <div class="nav-collapse">
-          <ul class="nav">
-                <% if current_user.present? %>
-                <li>
-                <%= link_to "LOG OUT", session_url, method:'delete' %></li>
-
-                <%else%>
-                <li><%= link_to "SIGN IN", login_url %></li>
-                <li><%= link_to "SIGN UP", new_user_url %></li>
-                <%end%>
-                <%= form_tag users_url, class: "form-search pull-right search-field", method: 'get' do %>
-              </div>
-
-                <%end%>
+          <ul class="nav pull-right">
+            <% if current_user.present? %>
+              <li>
+                <%= link_to "LOG OUT", session_url, method:'delete' %>
               </li>
-
-          </ul>
+                <%else%>
+                <li>
+                  <%= form_tag sessions_url, class: "navbar-form form-inline" do %>
+                <%= email_field_tag :email, params[:email], placeholder: "Email", class: "input-medium" %>
+                <%= password_field_tag :password, nil, placeholder: "Password", class: "input-medium" %>
+                <%= button_tag "Login", class: "btn btn-success" %>
+                <% end %>
+                </li>
+              <%end%>
+            </ul>
         </div>
-
       </div>
-
-    </div>
-
   </div>
  <!--  -->
 <div class = "marginin">
@@ -69,7 +60,8 @@ $(document).ready(function () {
 </div>
 
 <%= yield %>
-
+<script type="text/javascript" src="http://ajax.googleapis.com/ajax/libs/jquery/1.7.1/jquery.min.js"></script>
+<script type="text/javascript" src="javascript/smoothscroll.js"></script>
 
 </body>
 
