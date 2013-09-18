@@ -26,4 +26,16 @@ Trips::Application.configure do
   # This option may cause significant delays in view rendering with a large
   # number of complex assets.
   config.assets.debug = true
+
+ActionMailer::Base.smtp_settings = {
+  :user_name => 'brozran',
+  :password => 'F0recast',
+  :domain => 'http://trekrecs.com',
+  :address => 'smtp.sendgrid.net',
+  :port => 587,
+  :authentication => :plain,
+  :enable_starttls_auto => true
+}
+
+
 end

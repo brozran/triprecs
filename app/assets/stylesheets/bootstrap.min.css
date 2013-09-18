@@ -757,7 +757,7 @@ margin-bottom: 20px;}
       margin-right: 200px;
       padding-top: 10px;
       border-radius: 5%;
-      background-image: url("/assets/ps_neutral.png");
+      background-color: white;
       margin-top: 50px;
 
     }
@@ -858,7 +858,7 @@ input[type="text"].stdform{
       margin-left: 200px;
       margin-right: 200px;
       margin-top: 50px;
-      background-image: url("/assets/ps_neutral.png");
+      background-color: white;
       padding-top: 10px;
       padding-left:40px;
       padding-right:40px;
@@ -950,4 +950,6 @@ input[type="text"].stdform{
 .learnmore a{color:white;}
 
 .homebottomportion{padding-bottom: 65px;}
+
+.citiesonrecs{padding-left: 8px;}
 

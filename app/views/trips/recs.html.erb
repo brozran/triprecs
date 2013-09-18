@@ -1,5 +1,5 @@
 <div class = "recsheader">
-  <h1 class="text-center">Give <%=@tripowner.first_name%> trip recommendations!</h1>
+  <h1 class="text-center">Give <%=@tripowner.first_name.capitalize%> Trip Recommendations!</h1>
 
     <!-- SIGNUP FORM BELOW -->
 <% if current_user.blank? %>
@@ -54,14 +54,22 @@
     <h4 class = "text-center fontbuzz">
       **Copy the URL and send it to friends, family, and colleagues so they can fill in their recommendations**
     </h4><%end%>
-<%#end%>
+
+    <div class = "text-center">
+      <% @trip_details.each do |d| %>
+      <span class = "citiesonrecs"><a href="#<%= d %>" class="smoothScroll"><%=d.city_or_region%></a></span>
+      <% end %>
+    </div>
+
   </legend>
 </div>
                 <!-- HEADER ABOVE -->
 <div class = "recs">
         <!-- LIST OF RECOMMENDATIONS IS BELOW -->
     <% @trip_details.each do |d| %>
-
+      <a name="<%= d %>"></a>
+      </br>
+      </br>
       <h2 class ="text-center"><%=d.city_or_region %></h2>
       <h3>Recs Needed: <%=d.recommendation_needs %></h3>
 

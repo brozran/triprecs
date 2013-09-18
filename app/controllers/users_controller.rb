@@ -22,25 +22,6 @@ class UsersController < ApplicationController
     approved_ids.uniq!  # (May not be needed)
 
     @usersfiltered.delete_if { |user| approved_ids.include? user.id }
-      # @usersfiltered.each do |usersfiltered|
-
-      # if friendsapproved.present?
-      #   friendsapproved.each do |fa|
-      #     if usersfiltered.id == fa.f1
-      #         usersfiltered.destroy
-      #     end
-      #   end
-      # end
-
-      # if friendsrequestedapproved.present?
-      #   friendsrequestedapproved.each do |fra|
-      #     if usersfiltered.id == fra.f2
-      #         usersfiltered.destroy
-      #     end
-      #   end
-      # end
-
-      # end
 
   end
 
@@ -51,7 +32,6 @@ class UsersController < ApplicationController
   def new
     @user = User.new
     render :layout => 'bgimage.html.erb'
-
   end
 
   def create
@@ -63,6 +43,7 @@ class UsersController < ApplicationController
     @user.password_confirmation = params[:password_confirmation]
 
     if @user.save
+      UserMailer.signup_email(@user).deliver
       reset_session
       session[:user_id] = @user.id
       redirect_to trips_url, notice: "Signed up successfully."

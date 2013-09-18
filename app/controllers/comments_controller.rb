@@ -19,6 +19,10 @@ class CommentsController < ApplicationController
     @comment.user_id = params[:user_id]
 
     if @comment.save
+      tripdetails = TripDetail.find_by_id(params[:trip_detail_id])
+      trip = Trip.find_by_id(tripdetails.trip_id)
+      @tripowner = User.find_by_id(trip.userid)
+      RecMailer.newrec_email(@tripowner).deliver
       redirect_to :back
     else
       render 'new'
